@@ -1,10 +1,13 @@
-.container {
+body {
     display: flex;
     flex-direction: column;
+    height: 100vh;
 }
 
-.container div {
+.container {
     display: flex;
+    flex: 1 1 100%;
+    flex-direction: column;
 }
 
 .hovered {
