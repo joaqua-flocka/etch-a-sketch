@@ -2,12 +2,20 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
+    max-width: 1000px;
+}
+
+.header {
+    padding: 1rem 2rem 2rem;
 }
 
 .container {
     display: flex;
     flex: 1 1 100%;
     flex-direction: column;
+    border-style: solid;
+    border-color: black;
+    max-height: 1000px;
 }
 
 .hovered {
