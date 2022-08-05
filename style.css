@@ -21,3 +21,8 @@ body {
 .hovered {
     background-color: blue;
 }
+
+.shaded {
+    background-color: blue;
+    opacity: 0;
+}

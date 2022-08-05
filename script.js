@@ -32,28 +32,85 @@ function clearGrid(){
 function newGrid(number){
     clearGrid();
     createGrid(number);
+    grid = document.querySelectorAll('.square');
 }
 
-createGrid(100);
+
+
+function wakeGrid(grid){
+    grid.forEach((square) => {
+        if(mode == 'shade'){
+            square.classList.add('shaded');
+        }
+        let opacity = 0;
+        square.addEventListener('mouseenter', (event) => {
+            if(event.which == 1){
+                if(mode == 'default') square.classList.add('hovered');
+                else if(mode == 'rainbow'){
+                    square.style.backgroundColor = `rgb(${random(256)},${random(256)},${random(256)})`;
+                }
+                else if(mode == 'shade'){
+                    opacity += .1;
+                    square.style.opacity = opacity;
+                }
+                else alert('error');
+            }
+        })
+    })
+}
+
+function random(number){
+    return (Math.floor(Math.random() * number));
+}
 
 let input = document.querySelector('.input');
 let button = document.querySelector('.button');
+let rainbow = document.querySelector('.rainbow');
+let shade = document.querySelector('.shade');
+let reset = document.querySelector('.reset');
+let mode = 'default';
+
+createGrid(100);
+let grid = document.querySelectorAll('.square');
+wakeGrid(grid);
 
 button.addEventListener('click', (  ) => {
-    button.value = input.value;
-    newGrid(button.value);
-    grid = document.querySelectorAll('.square');
-    grid.forEach((square) => {
-        square.addEventListener('mouseenter', () => {
-            square.classList.add('hovered');
-        })
-    })
+    if(!input.value){
+        newGrid(100);
+        wakeGrid(grid);
+    }
+    else{
+        newGrid(input.value);
+        wakeGrid(grid);
+    }
 });
 
+rainbow.addEventListener('click', () => {
+    mode = 'rainbow';
+    if(!input.value){
+        newGrid(100);
+        wakeGrid(grid);
+    }
+    else{
+        newGrid(input.value);
+        wakeGrid(grid);
+    }
+});
 
-let grid = document.querySelectorAll('.square');
-grid.forEach((square) => {
-    square.addEventListener('mouseenter', () => {
-        square.classList.add('hovered');
-    })
-})
+shade.addEventListener('click', () => {
+    mode = 'shade';
+    if(!input.value){
+        newGrid(100);
+        wakeGrid(grid);
+    }
+    else{
+        newGrid(input.value);
+        wakeGrid(grid);
+    }
+});
+
+reset.addEventListener('click', () => {
+    mode = 'default';
+    newGrid(100);
+    wakeGrid(grid);
+});
